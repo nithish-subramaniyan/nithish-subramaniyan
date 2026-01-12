@@ -1,964 +1,185 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nithish - Software Engineer</title>
-    <style>
-        :root {
-            --primary-color: #6366f1;
-            --secondary-color: #8b5cf6;
-            --accent-color: #ec4899;
-            --bg-color: #0f0f14;
-            --card-bg: #1a1a24;
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --border-color: #2a2a3a;
-            --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header & Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: rgba(15, 15, 20, 0.85);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo span {
-            color: var(--primary-color);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background-color: var(--text-primary);
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
-            z-index: -1;
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 1;
-            max-width: 800px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero h2 {
-            font-size: 1.8rem;
-            font-weight: 400;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 1s ease 0.2s both;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 0.4s both;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            animation: fadeInUp 1s ease 0.6s both;
-        }
-
-        .btn {
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: var(--gradient);
-            color: white;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        /* Section Styling */
-        section {
-            padding: 80px 0;
-            position: relative;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: var(--gradient);
-        }
-
-        /* About Section */
-        .about-content {
-            display: flex;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-text {
-            flex: 2;
-        }
-
-        .about-info {
-            flex: 1;
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .info-item {
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .info-item i {
-            color: var(--primary-color);
-            margin-right: 1rem;
-            font-size: 1.2rem;
-            width: 24px;
-        }
-
-        /* Skills Section */
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-        }
-
-        .skill-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .skill-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .skill-description {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Experience Section */
-        .timeline {
-            position: relative;
-            padding: 2rem 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: var(--border-color);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            width: 50%;
-            padding: 0 2rem;
-        }
-
-        .timeline-item:nth-child(odd) {
-            left: 0;
-            text-align: right;
-        }
-
-        .timeline-item:nth-child(even) {
-            left: 50%;
-        }
-
-        .timeline-content {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .timeline-date {
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-company {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        .timeline-description {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            top: 1.5rem;
-            width: 20px;
-            height: 20px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            box-shadow: 0 0 0 4px var(--bg-color), 0 0 0 6px var(--primary-color);
-        }
-
-        .timeline-item:nth-child(odd) .timeline-dot {
-            right: -10px;
-        }
-
-        .timeline-item:nth-child(even) .timeline-dot {
-            left: -10px;
-        }
-
-        /* Projects Section */
-        .projects-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-image {
-            height: 200px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-description {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .tag {
-            background: rgba(99, 102, 241, 0.2);
-            color: var(--primary-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .project-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .project-links a:hover {
-            color: var(--primary-color);
-        }
-
-        /* Contact Section */
-        .contact-container {
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-        }
-
-        .form-group label {
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 0.8rem;
-            color: var(--text-primary);
-            font-family: inherit;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: var(--card-bg);
-            border-radius: 50%;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem 0;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: var(--card-bg);
-                flex-direction: column;
-                padding: 1rem 0;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-                transform: translateY(-100vh);
-                transition: transform 0.3s ease;
-            }
-
-            .nav-links.active {
-                transform: translateY(0);
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero h2 {
-                font-size: 1.4rem;
-            }
-
-            .about-content {
-                flex-direction: column;
-            }
-
-            .timeline::before {
-                left: 30px;
-            }
-
-            .timeline-item {
-                width: 100%;
-                left: 0 !important;
-                padding-left: 70px !important;
-                text-align: left !important;
-            }
-
-            .timeline-dot {
-                left: 20px !important;
-                right: auto !important;
-            }
-        }
-    </style>
+    <title>Nithish Subramaniyan | Backend Engineer</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <a href="#" class="logo">Nithish<span>.</span></a>
-            <ul class="nav-links">
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">NS</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
             </div>
-        </nav>
-    </header>
-
-    <section id="hero" class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
-            <h1>Nithish</h1>
-            <h2>Software Engineer</h2>
-            <p>Passionate about building large-scale systems with clean architecture and performance in mind</p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">View My Work</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-            </div>
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <span class="theme-icon"></span>
+            </button>
         </div>
-    </section>
+    </nav>
 
-    <section id="about" class="container fade-in">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>I'm a Software Engineer with over 4 years of experience specializing in backend development, system design, and microservices architecture. I have a strong passion for building large-scale systems that are both efficient and maintainable.</p>
-                <p>My approach combines technical expertise with a learning mindset, always seeking to understand the latest technologies and best practices. I'm particularly interested in clean architecture principles and performance optimization.</p>
-                <p>Currently based in India, I'm exploring the fascinating intersection of traditional software engineering and emerging AI/ML technologies.</p>
-            </div>
-            <div class="about-info">
-                <div class="info-item">
-                    <i>👨‍💻</i>
-                    <span>Software Engineer</span>
+    <main>
+        <section class="hero" id="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-name">Nithish Subramaniyan</h1>
+                    <p class="hero-title">Backend Engineer | Cloud • Serverless • AWS • AI | System Design</p>
+                    <p class="hero-location">Greater Chennai Area</p>
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn btn-primary">View Work</a>
+                        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                    </div>
                 </div>
-                <div class="info-item">
-                    <i>📅</i>
-                    <span>4+ Years Experience</span>
-                </div>
-                <div class="info-item">
-                    <i>📍</i>
-                    <span>India</span>
-                </div>
-                <div class="info-item">
-                    <i>🎯</i>
-                    <span>System Design, Backend</span>
-                </div>
-                <div class="info-item">
-                    <i>🧠</i>
-                    <span>AI/ML Enthusiast</span>
+                <div class="hero-visual">
+                    <div class="grid-animation"></div>
                 </div>
             </div>
+        </section>
+
+        <section class="about" id="about">
+            <div class="container">
+                <h2 class="section-title">About</h2>
+                <div class="about-content">
+                    <p class="about-text">System-minded backend engineer specializing in scalable, fault-tolerant, cloud-native platforms for real-world enterprise workloads.</p>
+                    <p class="about-text">Strong focus on architecture, data flow, reliability, and failure modes—designing systems that survive production, not just diagrams.</p>
+                    <p class="about-text">Experienced in API-first, microservices, and event-driven systems for high-volume, low-latency applications.</p>
+                    <p class="about-text">Proven at modernizing legacy systems into cloud-native, highly available platforms with measurable gains in performance, resilience, and cost.</p>
+                    <p class="about-text">Hands-on with distributed systems, event streaming, and serverless architectures. Owns systems end-to-end: design → production → optimization.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="skills" id="skills">
+            <div class="container">
+                <h2 class="section-title">Technical Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon">⚙️</div>
+                        <h3>Backend Engineering</h3>
+                        <p>API design, microservices, distributed systems, high-throughput data pipelines</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">☁️</div>
+                        <h3>Cloud Architecture</h3>
+                        <p>AWS, serverless, Lambda, ECS, cloud-native platforms, infrastructure automation</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">🔄</div>
+                        <h3>System Design</h3>
+                        <p>Scalability, fault tolerance, event-driven architecture, reliability engineering</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">📊</div>
+                        <h3>Data & Streaming</h3>
+                        <p>Event streaming, message queues, real-time processing, data consistency</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="experience" id="experience">
+            <div class="container">
+                <h2 class="section-title">Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">Jan 2023 - Present</div>
+                            <h3 class="timeline-title">Software Engineer</h3>
+                            <p class="timeline-company">TeleApps</p>
+                            <p class="timeline-location">Tamil Nadu, India</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">Jan 2022 - Dec 2022</div>
+                            <h3 class="timeline-title">Software Engineer Trainee</h3>
+                            <p class="timeline-company">TeleApps</p>
+                            <p class="timeline-location">Chennai, India</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects" id="projects">
+            <div class="container">
+                <h2 class="section-title">Selected Projects</h2>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <div class="project-header">
+                            <h3>Cloud-Native Migration Platform</h3>
+                            <span class="project-tag">System Design</span>
+                        </div>
+                        <p class="project-description">Architected and delivered migration of monolithic legacy system to cloud-native microservices, achieving 3x performance improvement and 40% cost reduction.</p>
+                        <div class="project-tech">AWS • Lambda • ECS • DynamoDB</div>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-header">
+                            <h3>Event-Driven Processing Pipeline</h3>
+                            <span class="project-tag">Distributed Systems</span>
+                        </div>
+                        <p class="project-description">Built high-throughput event streaming platform handling 100K+ events/sec with guaranteed ordering and exactly-once semantics.</p>
+                        <div class="project-tech">Kafka • Redis • PostgreSQL</div>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-header">
+                            <h3>Fault-Tolerant API Gateway</h3>
+                            <span class="project-tag">Reliability</span>
+                        </div>
+                        <p class="project-description">Designed resilient API gateway with circuit breakers, rate limiting, and automatic failover achieving 99.99% uptime.</p>
+                        <div class="project-tech">Node.js • Redis • Nginx</div>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-header">
+                            <h3>Serverless Analytics Engine</h3>
+                            <span class="project-tag">Serverless</span>
+                        </div>
+                        <p class="project-description">Developed cost-optimized serverless analytics pipeline processing terabytes of data with sub-second query latency.</p>
+                        <div class="project-tech">Lambda • S3 • Athena • Glue</div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="education" id="education">
+            <div class="container">
+                <h2 class="section-title">Education</h2>
+                <div class="education-card">
+                    <h3>B.Com (Corporate Secretaryship / Computer Application)</h3>
+                    <p class="education-institution">Dr. N.G.P. Arts and Science College</p>
+                    <p class="education-year">2018 - 2021</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-content">
+                    <p class="contact-text">Currently open to discussing backend engineering, cloud architecture, and system design opportunities.</p>
+                    <div class="contact-links">
+                        <a href="mailto:contact@nithish.dev" class="contact-link">Email</a>
+                        <a href="https://linkedin.com" class="contact-link">LinkedIn</a>
+                        <a href="https://github.com" class="contact-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Nithish Subramaniyan. Built with vanilla HTML, CSS, and JavaScript.</p>
         </div>
-    </section>
-
-    <section id="skills" class="container fade-in">
-        <h2 class="section-title">Skills & Expertise</h2>
-        <div class="skills-container">
-            <div class="skill-card">
-                <div class="skill-icon">⚙️</div>
-                <h3 class="skill-title">Backend Development</h3>
-                <p class="skill-description">Building robust and scalable backend systems with focus on performance and reliability.</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">🏗️</div>
-                <h3 class="skill-title">System Design</h3>
-                <p class="skill-description">Designing distributed systems that can handle scale and maintain high availability.</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">☕</div>
-                <h3 class="skill-title">Java & Spring Boot</h3>
-                <p class="skill-description">Extensive experience with Java ecosystem and Spring framework for enterprise applications.</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">📡</div>
-                <h3 class="skill-title">Apache Kafka</h3>
-                <p class="skill-description">Implementing event-driven architectures with Kafka for real-time data processing.</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">☁️</div>
-                <h3 class="skill-title">Cloud Technologies</h3>
-                <p class="skill-description">Working with cloud platforms for deploying and managing scalable applications.</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">🔧</div>
-                <h3 class="skill-title">Microservices</h3>
-                <p class="skill-description">Designing and implementing microservices architectures for complex systems.</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">🤖</div>
-                <h3 class="skill-title">AI/ML</h3>
-                <p class="skill-description">Exploring machine learning concepts and their application in real-world problems.</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">📚</div>
-                <h3 class="skill-title">Learning Mindset</h3>
-                <p class="skill-description">Continuously expanding knowledge and adapting to new technologies and paradigms.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience" class="container fade-in">
-        <h2 class="section-title">Experience Summary</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">2020 - Present</div>
-                    <h3 class="timeline-title">Senior Software Engineer</h3>
-                    <div class="timeline-company">Tech Company</div>
-                    <p class="timeline-description">Leading backend development initiatives, designing microservices architecture, and mentoring junior developers.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">2019 - 2020</div>
-                    <h3 class="timeline-title">Software Engineer</h3>
-                    <div class="timeline-company">Software Solutions Inc.</div>
-                    <p class="timeline-description">Developed and maintained backend services using Java and Spring Boot, implemented event-driven systems with Kafka.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">2018 - 2019</div>
-                    <h3 class="timeline-title">Junior Software Engineer</h3>
-                    <div class="timeline-company">Digital Innovations</div>
-                    <p class="timeline-description">Started professional journey focusing on backend development, learning system design principles and best practices.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="container fade-in">
-        <h2 class="section-title">Projects</h2>
-        <div class="projects-container">
-            <div class="project-card">
-                <div class="project-image">📊</div>
-                <div class="project-content">
-                    <h3 class="project-title">Data Analytics Platform</h3>
-                    <p class="project-description">A scalable data analytics platform that processes millions of events daily and provides real-time insights.</p>
-                    <div class="project-tags">
-                        <span class="tag">Java</span>
-                        <span class="tag">Spring Boot</span>
-                        <span class="tag">Kafka</span>
-                        <span class="tag">PostgreSQL</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#"><i>🔗</i> Live Demo</a>
-                        <a href="#"><i>💻</i> GitHub</a>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-image">🔐</div>
-                <div class="project-content">
-                    <h3 class="project-title">Authentication Service</h3>
-                    <p class="project-description">A microservice-based authentication and authorization system with JWT tokens and OAuth2 integration.</p>
-                    <div class="project-tags">
-                        <span class="tag">Microservices</span>
-                        <span class="tag">Spring Security</span>
-                        <span class="tag">JWT</span>
-                        <span class="tag">Redis</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#"><i>🔗</i> Live Demo</a>
-                        <a href="#"><i>💻</i> GitHub</a>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-image">🚀</div>
-                <div class="project-content">
-                    <h3 class="project-title">Message Queue System</h3>
-                    <p class="project-description">A high-throughput message queue system designed for distributed systems with guaranteed delivery.</p>
-                    <div class="project-tags">
-                        <span class="tag">Kafka</span>
-                        <span class="tag">System Design</span>
-                        <span class="tag">Docker</span>
-                        <span class="tag">Kubernetes</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#"><i>🔗</i> Live Demo</a>
-                        <a href="#"><i>💻</i> GitHub</a>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-image">🤖</div>
-                <div class="project-content">
-                    <h3 class="project-title">ML Recommendation Engine</h3>
-                    <p class="project-description">A machine learning powered recommendation engine that provides personalized content suggestions.</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">TensorFlow</span>
-                        <span class="tag">REST API</span>
-                        <span class="tag">MongoDB</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#"><i>🔗</i> Live Demo</a>
-                        <a href="#"><i>💻</i> GitHub</a>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-image">📱</div>
-                <div class="project-content">
-                    <h3 class="project-title">E-commerce Backend</h3>
-                    <p class="project-description">A comprehensive backend system for an e-commerce platform with inventory, orders, and payment processing.</p>
-                    <div class="project-tags">
-                        <span class="tag">Java</span>
-                        <span class="tag">Spring Boot</span>
-                        <span class="tag">MySQL</span>
-                        <span class="tag">RabbitMQ</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#"><i>🔗</i> Live Demo</a>
-                        <a href="#"><i>💻</i> GitHub</a>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-image">🌐</div>
-                <div class="project-content">
-                    <h3 class="project-title">API Gateway</h3>
-                    <p class="project-description">A high-performance API gateway with rate limiting, authentication, and routing capabilities.</p>
-                    <div class="project-tags">
-                        <span class="tag">System Design</span>
-                        <span class="tag">Spring Cloud</span>
-                        <span class="tag">Redis</span>
-                        <span class="tag">Docker</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#"><i>🔗</i> Live Demo</a>
-                        <a href="#"><i>💻</i> GitHub</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="container fade-in">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-container">
-            <p>I'm always interested in hearing about new opportunities and exciting projects. Feel free to reach out if you'd like to connect!</p>
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Send Message</button>
-            </form>
-            <div class="social-links">
-                <a href="#"><i>📧</i></a>
-                <a href="#"><i>💼</i></a>
-                <a href="#"><i>🐙</i></a>
-                <a href="#"><i>🐦</i></a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Nithish. All Rights Reserved.</p>
     </footer>
 
-    <script>
-        // Mobile menu toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-            
-            menuToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-            });
-            
-            // Close menu when clicking on a link
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', function() {
-                    navLinks.classList.remove('active');
-                });
-            });
-            
-            // Scroll animations
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-            
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
-            
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
-            });
-            
-            // Header scroll effect
-            window.addEventListener('scroll', function() {
-                const header = document.querySelector('header');
-                if (window.scrollY > 100) {
-                    header.style.backgroundColor = 'rgba(15, 15, 20, 0.95)';
-                } else {
-                    header.style.backgroundColor = 'rgba(15, 15, 20, 0.85)';
-                }
-            });
-            
-            // Form submission
-            const contactForm = document.querySelector('.contact-form');
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                // In a real implementation, you would send the form data to a server
-                // For this demo, we'll just show an alert
-                const formData = new FormData(contactForm);
-                const name = formData.get('name');
-                alert(`Thank you for your message, ${name}! This is a demo form, so no message was actually sent.`);
-                contactForm.reset();
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
