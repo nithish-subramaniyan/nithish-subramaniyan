@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Nithish Subramaniyan — Portfolio
 
 A premium, systems-first portfolio built with Next.js 14 (App Router), TypeScript, Tailwind CSS, and Framer Motion.
@@ -42,3 +43,6 @@ This is a standard Next.js app — it deploys as-is to Vercel, Netlify, or any N
 npm run build
 npm run start
 ```
+=======
+
+>>>>>>> 9fbaa46cbb439209774d79749003b3a33784ccd4
