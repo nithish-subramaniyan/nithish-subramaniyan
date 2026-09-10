@@ -1,44 +1,70 @@
-# Nithish Subramaniyan — Portfolio
+# Hi, I'm Nithish 👋
 
-A premium, systems-first portfolio built with Next.js 14 (App Router), TypeScript, Tailwind CSS, and Framer Motion.
+### Backend Engineer | Cloud & Distributed Systems
 
-## Getting started
+I build backend systems designed for reliability, scalability, and real-world impact.
 
-```bash
-npm install
-npm run dev
-```
+My focus is on designing and building cloud-native applications, distributed systems, APIs, integrations, and event-driven architectures.
 
-Open http://localhost:3000.
+---
 
-## Before you ship it
+## 👨‍💻 About Me
 
-1. **Add your resume.** Drop `resume.pdf` into `/public`. It's already linked from the nav, the "30 seconds?" panel, and the Recruiter View drawer.
-2. **Update contact details.** Edit `email` and `linkedin` in `lib/data.ts` (`profile` object).
-3. **Review the case studies.** The three case studies in `lib/data.ts` (`projects`) are written from the systems and technologies in your brief (event-driven routing, workflow modernization, AI-assisted intake with Lex/Bedrock). Replace the specifics with your real architecture decisions, and add real metrics wherever you have them — the copy is deliberately qualitative where no numbers were provided.
-4. **Update the domain** in `app/layout.tsx` (`metadataBase`), `app/sitemap.ts`, and `app/robots.ts` once you know where this will be hosted.
-5. **Engineering Notes** are placeholders ("Coming soon") by design — swap them for real posts (or links to them) once you've written them.
+I'm a Software Engineer passionate about solving complex engineering problems and building systems that work at scale.
 
-## Project structure
+I enjoy working across backend architecture, cloud infrastructure, system integrations, and emerging AI technologies.
 
-```
-app/                Route, layout, metadata, global styles
-components/         One file per section/UI piece
-lib/data.ts         All content — copy lives here, not scattered in components
-lib/utils.ts        Small className helper
-```
+- ⚙️ Backend & API Engineering
+- ☁️ Cloud-Native Architecture
+- 🏗️ System Design & Distributed Systems
+- 🔄 Event-Driven & Serverless Systems
+- 🤖 AI & LLM Integrations
+- 📈 Performance, Scalability & Reliability
 
-## Design system
+---
 
-- Colors, spacing, and type scale are defined as CSS variables in `app/globals.css` and mapped into Tailwind in `tailwind.config.ts`. Both light and dark themes share the same single accent color (a controlled cobalt-blue), per the brief.
-- Typography uses Geist Sans (headings + body) and Geist Mono (small technical labels, tags, numbers) — installed via the `geist` package, no external font requests needed.
-- Motion respects `prefers-reduced-motion` throughout (see `useReducedMotion` usage and the global CSS media query).
+## 🛠️ Technologies & Tools
 
-## Deploying
+**Backend**
 
-This is a standard Next.js app — it deploys as-is to Vercel, Netlify, or any Node host:
+`Java` · `Python` · `Node.js` · `REST APIs`
 
-```bash
-npm run build
-npm run start
-```
+**Cloud**
+
+`AWS` · `Serverless` · `Lambda` · `API Gateway`
+
+**Architecture**
+
+`Microservices` · `Distributed Systems` · `Event-Driven Architecture`
+
+**AI**
+
+`Amazon Bedrock` · `LLMs` · `AI Integrations`
+
+---
+
+## 🚀 What I Care About
+
+> Building systems that are not just functional, but reliable, scalable, and easy to evolve.
+
+I enjoy breaking down complex problems, understanding how systems behave under real-world conditions, and finding practical engineering solutions.
+
+---
+
+## 🌐 Portfolio
+
+🔗 **[Explore My Engineering Portfolio →](https://nithish-subramaniyan.github.io/nithish-subramaniyan/)**
+
+---
+
+## 📫 Connect With Me
+
+💼 [LinkedIn](https://www.linkedin.com/in/nithish-subramaniyan/)
+
+🌐 [Portfolio](https://nithish-subramaniyan.github.io/nithish-subramaniyan/)
+
+---
+
+<p align="center">
+  <i>Build systems. Solve problems. Keep learning.</i>
+</p>
