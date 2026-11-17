@@ -20,7 +20,7 @@ export function EngineeringNotes() {
         <ul className="mt-14">
           {engineeringNotes.map((note, i) => (
             <motion.li
-              key={note}
+              key={note.title}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
@@ -29,12 +29,14 @@ export function EngineeringNotes() {
                 delay: i * 0.05,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="hairline flex flex-wrap items-center justify-between gap-3 py-5"
+              className="hairline grid gap-2 py-6 md:grid-cols-[1fr_1.6fr] md:gap-10"
             >
-              <span className="text-base text-foreground/90">{note}</span>
-              <span className="font-mono text-xs text-muted">
-                Coming soon
-              </span>
+              <h3 className="text-base font-medium text-foreground">
+                {note.title}
+              </h3>
+              <p className="text-base leading-relaxed text-foreground/70">
+                {note.body}
+              </p>
             </motion.li>
           ))}
         </ul>

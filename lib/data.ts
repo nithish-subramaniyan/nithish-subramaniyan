@@ -279,13 +279,36 @@ export const technicalDomains = [
   },
 ];
 
-export const engineeringNotes = [
-  "Why systems fail in production",
-  "Designing APIs for real-world scale",
-  "When serverless is the wrong choice",
-  "Event-driven architecture without the buzzwords",
-  "Retries are harder than they look",
-  "How I think about system design interviews",
+export type EngineeringNote = {
+  title: string;
+  body: string;
+};
+
+export const engineeringNotes: EngineeringNote[] = [
+  {
+    title: "Why systems fail in production",
+    body: "Rarely because of one bug. It's usually a chain: a slow dependency, no timeout, a retry storm, a config change, and no one able to see it happening. Failures come from interactions between components, not the components themselves. So I design for partial failure: timeouts everywhere, small blast radius, cheap rollbacks, and enough observability to answer \"what changed?\" in minutes.",
+  },
+  {
+    title: "Designing APIs for real-world scale",
+    body: "Scale is mostly about clients you don't control. That means cursor-based pagination from day one, idempotency keys on writes, consistent error shapes, rate limits, and a rule that changes are additive-only. Every field you ship is a promise, so I'd rather ship fewer fields and keep them for years.",
+  },
+  {
+    title: "When serverless is the wrong choice",
+    body: "Serverless shines for spiky, event-driven, or glue workloads. It struggles with steady high-throughput traffic (the cost curve flips), latency-critical paths (cold starts), long-running jobs, and anything that holds many database connections. If your load is predictable and constant, a few well-sized containers are usually cheaper and easier to reason about.",
+  },
+  {
+    title: "Event-driven architecture without the buzzwords",
+    body: "Services publish facts about what happened, and other services react. The win is decoupling in time and ownership. The cost is harder debugging, eventual consistency, and having to handle duplicates and out-of-order delivery. I use it for async work and fan-out, not for request/response flows. Idempotent consumers, dead-letter queues, and versioned schemas aren't optional.",
+  },
+  {
+    title: "Retries are harder than they look",
+    body: "A naive retry turns a small outage into a big one by multiplying load on a system that's already struggling. Done properly, it means exponential backoff with jitter, a cap on attempts, a retry budget, and retrying only idempotent operations. Retry at one layer only: three layers retrying three times each is 27 requests for one failure.",
+  },
+  {
+    title: "How I think about system design interviews",
+    body: "They're a conversation about trade-offs, not a diagram recital. I clarify requirements, estimate scale, start with the simplest thing that works, find the first bottleneck, and evolve the design from there, saying out loud what I'm giving up at each step. The interviewer wants to see how you reason, not that you know the \"right\" architecture.",
+  },
 ];
 
 export const recruiterQuickView = {
