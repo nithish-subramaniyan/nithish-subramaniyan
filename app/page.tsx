@@ -19,6 +19,7 @@ export default function Home() {
       <Nav />
       <main id="main">
         <Hero />
+        <RecruiterQuickView />
         <WhyMe />
         <SelectedWork />
         <HowIDesign />
@@ -27,7 +28,6 @@ export default function Home() {
         <TechnicalDomains />
         <EngineeringNotes />
         <PersonalPositioning />
-        <RecruiterQuickView />
         <FinalCTA />
       </main>
       <Footer />
